@@ -5,6 +5,10 @@ and projects based on [Isabelle](https://isabelle.in.tum.de).
 
 ## List of Dockerfiles
 
+* [debian4isabelle](debian4isabelle/Dockerfile) provides a generic [Debian](https://www.debian.org)
+  image that serves as basis for the Isabelle docker files. This image is not 
+  eagerly optimised for size, as it goal is to include all tools that are required for 
+  running Isabelle and tools based on Isabelle (e.g., HOL-TestGen).
 
 ## Authors
 
