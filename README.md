@@ -10,6 +10,9 @@ and projects based on [Isabelle](https://isabelle.in.tum.de).
   eagerly optimised for size, as it goal is to include all tools that are required for 
   running Isabelle and tools based on Isabelle (e.g., HOL-TestGen).
 
+* [isabelle](isabelle/Dockerfile) provides a parametrized Dockerfile to generate docker 
+  images for various Isabelle versions.
+
 ## Authors
 
 Main author: [Achim D. Brucker](http://www.brucker.ch/)

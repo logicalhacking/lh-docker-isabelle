@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright (c) 2019 Achim D. Brucker
 #
 # All rights reserved.
@@ -25,29 +24,35 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-set -e 
+FROM logicalhacking:debian4isabelle
 
-VERSION=${1:-2018}
-SESSIONS=${2:-"HOL"}
+ARG isabelle
+ARG afp
+ARG sessions
 
-# Generate base image
-docker build -t logicalhacking:debian4isabelle debian4isabelle
+LABEL isabelle.url="$isabelle"
+LABEL isabelle.afp.url="$afp"
+LABEL isabelle.sessions="$sessions"
 
-# Generate Isabelle image
-ISA_URL="http://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_app.tar.gz"
-AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
-AFP_TAR=`w3m -dump  $AFP_URL | grep ^afp- | head -1 | awk -e '{print $1}'`
+SHELL ["/bin/bash", "-c"]
 
-for url in $ISA_URL $AFP_URL/$AFP_TAR; do
-  if curl --output /dev/null --silent --head --fail "$url"; then
-    echo "URL exists: $url"
-  else
-    echo "URL does not exist: $url"
-    exit 1
-  fi
-done
+# Create default user (isabelle)
+RUN useradd -m isabelle && (echo isabelle:isabelle | chpasswd)
+USER isabelle
 
-docker build -t logicalhacking:isabelle2018 isabelle \
-             --build-arg sessions=$SESSIONS \
-             --build-arg isabelle=$ISA_URL \
-             --build-arg afp=$AFP_URL/$AFP_TAR
+# Install Isabelle and corresponding AFP
+WORKDIR /home/isabelle
+RUN curl -L -o "Isabelle.tar.gz" "$isabelle" && \
+  curl -L -o "afp.tar.gz" "$afp" && \
+  tar xzf "Isabelle.tar.gz" && \
+  tar xzf "afp.tar.gz" && \
+  rm *.tar.gz && \
+  mv Isabelle* Isabelle && \
+  mv afp* afp && \
+  mkdir .isabelle && \
+  echo `pwd`/afp/thys > .isabelle/ROOTS && \
+  perl -pi -e 's,ISABELLE_HOME_USER=.*,ISABELLE_HOME_USER="\$USER_HOME/.isabelle",g;' Isabelle/etc/settings && \
+  Isabelle/bin/isabelle build -s -b $sessions
+
+ENTRYPOINT ["Isabelle/bin/isabelle"]
+
