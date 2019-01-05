@@ -54,5 +54,3 @@ RUN curl -L -o "Isabelle.tar.gz" "$isabelle" && \
   perl -pi -e 's,ISABELLE_HOME_USER=.*,ISABELLE_HOME_USER="\$USER_HOME/.isabelle",g;' Isabelle/etc/settings && \
   Isabelle/bin/isabelle build -s -b $sessions
 
-ENTRYPOINT ["Isabelle/bin/isabelle"]
-
