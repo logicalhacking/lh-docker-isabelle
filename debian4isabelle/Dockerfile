@@ -26,7 +26,7 @@
 
 FROM debian:testing-slim
 
-# SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-c"]
 
 # packages
 RUN apt-get -y update && \

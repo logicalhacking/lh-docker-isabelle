@@ -34,7 +34,7 @@ LABEL isabelle.url="$isabelle"
 LABEL isabelle.afp.url="$afp"
 LABEL isabelle.sessions="$sessions"
 
-# SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-c"]
 
 # Create default user (isabelle)
 RUN useradd -m isabelle && (echo isabelle:isabelle | chpasswd)
