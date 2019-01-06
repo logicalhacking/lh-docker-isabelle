@@ -29,6 +29,7 @@ set -e
 
 VERSION=${1:-2018}
 SESSIONS=${2:-"HOL"}
+DOCKERUID=${3:-`id -u`}
 
 # Generate base image
 docker build -t logicalhacking:debian4isabelle debian4isabelle
@@ -48,6 +49,7 @@ for url in $ISA_URL $AFP_URL/$AFP_TAR; do
 done
 
 docker build -t logicalhacking:isabelle$VERSION isabelle \
+             --build-arg uid=$DOCKERUID \
              --build-arg sessions=$SESSIONS \
              --build-arg isabelle=$ISA_URL \
              --build-arg afp=$AFP_URL/$AFP_TAR

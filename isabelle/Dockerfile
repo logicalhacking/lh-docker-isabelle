@@ -29,6 +29,7 @@ FROM logicalhacking:debian4isabelle
 ARG isabelle
 ARG afp
 ARG sessions
+ARG uid
 
 LABEL isabelle.url="$isabelle"
 LABEL isabelle.afp.url="$afp"
@@ -37,7 +38,7 @@ LABEL isabelle.sessions="$sessions"
 SHELL ["/bin/bash", "-c"]
 
 # Create default user (isabelle)
-RUN useradd -m isabelle && (echo isabelle:isabelle | chpasswd)
+RUN useradd -u $uid -m isabelle && (echo isabelle:isabelle | chpasswd)
 USER isabelle
 
 # Install Isabelle and corresponding AFP
