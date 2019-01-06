@@ -34,7 +34,7 @@ SESSIONS=${2:-"HOL"}
 docker build -t logicalhacking:debian4isabelle debian4isabelle
 
 # Generate Isabelle image
-ISA_URL="http://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_app.tar.gz"
+ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_app.tar.gz"
 AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
 AFP_TAR=`w3m -dump  $AFP_URL | grep ^afp- | head -1 | awk -e '{print $1}'`
 
