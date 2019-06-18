@@ -27,17 +27,24 @@
 
 set -e 
 
-VERSION=${1:-2018}
+VERSION=${1:-2019}
 SESSIONS=${2:-"HOL"}
 DOCKERUID=${3:-`id -u`}
+
+LATEST="2019"
 
 # Generate base image
 docker build -t logicalhacking:debian4isabelle debian4isabelle
 
 # Generate Isabelle image
-ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_app.tar.gz"
-AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
-AFP_TAR=`w3m -dump  $AFP_URL | grep ^afp- | head -1 | awk -e '{print $1}'`
+ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_linux.tar.gz"
+if [ "$LATEST" -eq "$VERSION" ]; then
+  AFP_URL="https://www.isa-afp.org/release/"
+  AFP_TAR=`w3m -dump  $AFP_URL | grep "afp-[0-9]" | awk -e '{print $3}' | sort -r | head -1`
+else
+  AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
+  AFP_TAR=`w3m -dump  $AFP_URL | grep ^afp- | head -1 | awk -e '{print $1}'`
+fi
 
 for url in $ISA_URL $AFP_URL/$AFP_TAR; do
   if curl --output /dev/null --silent --head --fail "$url"; then

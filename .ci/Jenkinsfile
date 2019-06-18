@@ -8,6 +8,8 @@ pipeline {
 		sh './build.sh 2017 Functional-Automata'
                 echo 'Building Isabelle 2018'
 		sh './build.sh 2018 Functional-Automata'
+                echo 'Building Isabelle 2019'
+		sh './build.sh 2019 Functional-Automata'
             }
         }
     }

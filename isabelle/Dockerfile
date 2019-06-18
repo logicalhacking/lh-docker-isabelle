@@ -53,6 +53,6 @@ RUN curl -L -o "Isabelle.tar.gz" "$isabelle" && \
   mkdir .isabelle && \
   echo `pwd`/afp/thys > .isabelle/ROOTS && \
   perl -pi -e 's,ISABELLE_HOME_USER=.*,ISABELLE_HOME_USER="\$USER_HOME/.isabelle",g;' Isabelle/etc/settings && \
-  Isabelle/bin/isabelle build -s -b $sessions
+  Isabelle/bin/isabelle build -b $sessions
 
 ENV PATH="/home/isabelle/Isabelle/bin:${PATH}"
