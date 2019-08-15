@@ -33,8 +33,23 @@ RUN apt-get -y update && \
   apt-get install -y \
       # core utilities for getting Isabelle up and running 
       curl less lib32stdc++6 libgomp1 libwww-perl rlwrap unzip \
+      # useful utilities 
+      git mercurial \
       # texlive for Isabelle's PDF document generation
-      texlive-latex-extra \
+      texlive-latex-extra texlive-fonts-extra texlive-publishers \
       && \
   apt-get clean && \
   rm -rf /usr/share/doc
+
+RUN curl -o /tmp/generic.zip http://www.entcs.org/generic.zip && \
+    mkdir -p /usr/local/share/texmf/tex/latex/ && \
+    cd /tmp && unzip generic.zip && mv generic /usr/local/share/texmf/tex/latex/entcs && \
+    curl -o /tmp/lncs.zip ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip && \
+    mkdir -p /usr/local/share/texmf/tex/latex/llncs && \
+    mkdir -p /usr/local/share/texmf/bibtex/bst && \
+    mkdir -p /tmp/lncs && \
+    cd /tmp/lncs && unzip /tmp/lncs.zip && mv *.cls /usr/local/share/texmf/tex/latex/llncs && mv *.bst /usr/local/share/texmf/bibtex/bst && \
+    mkdir -p /usr/local/share/texmf/tex/latex/sig-alternate && \
+    curl -o /usr/local/share/texmf/tex/latex/sig-alternate/sig-alternate.cls https://www.acm.org/binaries/content/assets/publications/article-templates/sig-alternate-05-2015.cls && \ 
+    curl -o /usr/local/share/texmf/tex/latex/sig-alternate/acmcopyright.sty https://www.acm.org/binaries/content/assets/publications/article-templates/acmcopyright.sty
+
