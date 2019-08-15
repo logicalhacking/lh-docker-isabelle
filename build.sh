@@ -34,7 +34,7 @@ DOCKERUID=${3:-`id -u`}
 LATEST="2019"
 
 # Generate base image
-docker build -t lh-docker-isabelle:debian4isabelle debian4isabelle
+docker build -t logicalhacking/lh-docker-isabelle:debian4isabelle debian4isabelle
 
 # Generate Isabelle image
 ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_linux.tar.gz"
@@ -55,7 +55,7 @@ for url in $ISA_URL $AFP_URL/$AFP_TAR; do
   fi
 done
 
-docker build -t lh-docker-isabelle:isabelle$VERSION isabelle \
+docker build -t logicalhacking/lh-docker-isabelle:isabelle$VERSION isabelle \
              --build-arg uid=$DOCKERUID \
              --build-arg sessions=$SESSIONS \
              --build-arg isabelle=$ISA_URL \
