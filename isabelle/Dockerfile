@@ -24,7 +24,7 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-FROM logicalhacking:debian4isabelle
+FROM lh-docker-isabelle:debian4isabelle
 
 ARG isabelle
 ARG afp
