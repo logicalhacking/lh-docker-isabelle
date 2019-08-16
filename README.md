@@ -1,4 +1,4 @@
-# Dockerfiles for Isabelle and Related Projects
+# [Dockerfiles for Isabelle and Related Projects](https://git.logicalhacking.com/lh-docker/lh-docker-isabelle)
 
 This repository contains Dockerfiles for running [Isabelle](https://isabelle.in.tum.de) 
 and projects based on [Isabelle](https://isabelle.in.tum.de). 
@@ -11,7 +11,8 @@ and projects based on [Isabelle](https://isabelle.in.tum.de).
   running Isabelle and tools based on Isabelle (e.g., HOL-TestGen).
 
 * [isabelle](isabelle/Dockerfile) provides a parametrized Dockerfile to generate docker 
-  images for various Isabelle versions.
+  images for various Isabelle versions, including a copy of the most recent version of 
+  the [AFP](https://www.isa-afp.org) available for the specified version of Isabelle.
 
 ## Authors
 
@@ -28,4 +29,4 @@ SPDX-License-Identifier: BSD-2-Clause
 
 The master git repository for this project is hosted by the [Software
 Assurance & Security Research Team](https://logicalhacking.com) at
-<https://git.logicalhacking.com//lh-docker/lh-docker-isabelle>.
+<https://git.logicalhacking.com/lh-docker/lh-docker-isabelle>.
