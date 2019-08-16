@@ -31,10 +31,11 @@ set -e
 ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_linux.tar.gz"
 if [ "$LATEST" -eq "$VERSION" ]; then
   AFP_URL="https://www.isa-afp.org/release/"
-  AFP_TAR=`w3m -dump  $AFP_URL | grep "afp-[0-9]" | awk -e '{print $3}' | sort -r | head -1`
+  AFP_TAR=`curl -s $AFP_URL  | grep "afp-[0-9]" | sed -e 's|^.*href="\(.*\)">.*$|\1|;s|".*$||' | sort -r | head -1`
+
 else
-  AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
-  AFP_TAR=`w3m -dump  $AFP_URL | grep ^afp- | head -1 | awk -e '{print $1}'`
+    AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
+    AFP_TAR=`curl -L -s https://sourceforge.net/projects/afp/files/afp-Isabelle2018  | grep "afp-[0-9].* (.*</span" | sed -e 's|^.*>\(afp-.*\) (.*$|\1|' | sort -r | head -1`
 fi
 
 for url in $ISA_URL $AFP_URL/$AFP_TAR; do
