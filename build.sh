@@ -37,4 +37,4 @@ LATEST="2019"
 docker build -t logicalhacking/debian4isabelle debian4isabelle
 
 # Generate Isabelle image(s)
-source isabelle/hooks/build
+( cd isabelle && source hooks/build)
