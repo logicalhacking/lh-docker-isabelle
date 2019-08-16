@@ -47,7 +47,7 @@ for url in $ISA_URL $AFP_URL/$AFP_TAR; do
 done
 
 docker build -t logicalhacking/isabelle$VERSION isabelle \
-             --build-arg uid=$DOCKERUID \
-             --build-arg sessions=$SESSIONS \
-             --build-arg isabelle=$ISA_URL \
-             --build-arg afp=$AFP_URL/$AFP_TAR
+             --build-arg uid="$DOCKERUID" \
+             --build-arg sessions="$SESSIONS" \
+             --build-arg isabelle="$ISA_URL" \
+             --build-arg afp="$AFP_URL/$AFP_TAR"
