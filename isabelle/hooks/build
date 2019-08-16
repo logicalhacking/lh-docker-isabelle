@@ -29,13 +29,16 @@ set -e
 
 # Generate Isabelle image
 ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_linux.tar.gz"
-if [ "$LATEST" -eq "$VERSION" ]; then
+if [ "$LATEST" == "$VERSION" ]; then
   AFP_URL="https://www.isa-afp.org/release/"
   AFP_TAR=`curl -s $AFP_URL  | grep "afp-[0-9]" | sed -e 's|^.*href="\(.*\)">.*$|\1|;s|".*$||' | sort -r | head -1`
 
 else
+    # URL for determining name of archive:
     AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
-    AFP_TAR=`curl -L -s https://sourceforge.net/projects/afp/files/afp-Isabelle2018  | grep "afp-[0-9].* (.*</span" | sed -e 's|^.*>\(afp-.*\) (.*$|\1|' | sort -r | head -1`
+    AFP_TAR=`curl -L -s $AFP_URL  | grep "afp-[0-9].*[a-z]</span" | sed -e 's|^.*>\(afp-.*\)</s.*$|\1|' | sort -r | head -1`
+    # URL for direct download    
+    AFP_URL="https://downloads.sourceforge.net/project/afp/afp-Isabelle$VERSION"
 fi
 
 for url in $ISA_URL $AFP_URL/$AFP_TAR; do
@@ -47,7 +50,7 @@ for url in $ISA_URL $AFP_URL/$AFP_TAR; do
   fi
 done
 
-docker build -t logicalhacking/isabelle$VERSION isabelle \
+docker build -t logicalhacking/isabelle$VERSION . \
              --build-arg uid="$DOCKERUID" \
              --build-arg sessions="$SESSIONS" \
              --build-arg isabelle="$ISA_URL" \
