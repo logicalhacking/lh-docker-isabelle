@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright (c) 2019 Achim D. Brucker
 #
 # All rights reserved.
@@ -25,20 +24,29 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-set -e 
+FROM logicalhacking/isabelle2019
 
-VERSION=${1:-2019}
-SESSIONS=${2:-"HOL"}
-DOCKERUID=${3:-`id -u`}
+ARG tag
 
-LATEST="2019"
+LABEL isadof.tag="$tag"
 
-# Generate base image
-docker build -t logicalhacking/debian4isabelle debian4isabelle
+SHELL ["/bin/bash", "-c"]
 
-# Generate Isabelle image(s)
-( cd isabelle && source hooks/build)
+# Install Isabelle and corresponding AFP
+WORKDIR /home/isabelle
 
-# Generate Isabelle/DOF image
-# ISADOF_VERSION=1.0.0
-( cd isabelle_dof && source hooks/build)
+USER root
+RUN apt-get -y update && apt-get install -y imagemagick && \
+  apt-get clean && \
+  rm -rf /usr/share/doc
+
+USER isabelle
+RUN git clone https://git.logicalhacking.com/isabelle_dof/isabelle_dof/ && \
+  (cd isabelle_dof && git checkout "$tag") && \
+  (cd isabelle_dof && ./install) && \
+  (cd isabelle_dof && isabelle build -D .) && \
+  echo "ISABELLE_LOGIC=Isabelle_DOF" >> Isabelle/etc/settings && \
+    rm Isabelle/lib/logo/isabelle.gif && \
+    convert isabelle_dof/examples/technical_report/Isabelle_DOF-Manual/document/figures/Isabelle_DOF-logo.pdf -resize 200 Isabelle/lib/logo/isabelle.gif && \
+  for o in `find isabelle_dof/examples -name "output"`; do mv $o/document.pdf $o/..; done && \
+  find isabelle_dof/examples -name output -exec rm -rf {} \; &> /dev/null || true 
