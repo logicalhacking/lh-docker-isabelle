@@ -41,12 +41,17 @@ RUN apt-get -y update && apt-get install -y imagemagick && \
   rm -rf /usr/share/doc
 
 USER isabelle
-RUN git clone https://git.logicalhacking.com/isabelle_dof/isabelle_dof/ && \
-  (cd isabelle_dof && git checkout "$tag") && \
-  (cd isabelle_dof && ./install) && \
-  (cd isabelle_dof && isabelle build -D .) && \
+RUN git clone https://git.logicalhacking.com/Isabelle_DOF/Isabelle_DOF.git && \
+  (cd Isabelle_DOF && git checkout "$tag") && \
+  (cd Isabelle_DOF && ./install) && \
+  (cd Isabelle_DOF && isabelle build -D .) && \
   echo "ISABELLE_LOGIC=Isabelle_DOF" >> Isabelle/etc/settings && \
-    rm Isabelle/lib/logo/isabelle.gif && \
-    convert isabelle_dof/examples/technical_report/Isabelle_DOF-Manual/document/figures/Isabelle_DOF-logo.pdf -resize 200 Isabelle/lib/logo/isabelle.gif && \
-  for o in `find isabelle_dof/examples -name "output"`; do mv $o/document.pdf $o/..; done && \
-  find isabelle_dof/examples -name output -exec rm -rf {} \; &> /dev/null || true 
+  echo "ISABELLE_DOCS_RELEASE_NOTES=\"$PWD/Isabelle_DOF/README.md:$PWD/Isabelle_DOF/Changelog.md\"" \ 
+       >> Isabelle/etc/settings && \
+  echo "ISABELLE_DOCS_EXAMPLES=\"$PWD/Isabelle_DOF/examples/scholarly_paper/2018-cicm-isabelle_dof-applications/IsaDofApplications.thy\"" \
+       >> Isabelle/etc/settings && \
+  rm Isabelle/lib/logo/isabelle.gif && \
+  convert Isabelle_DOF/examples/technical_report/Isabelle_DOF-Manual/document/figures/Isabelle_DOF-logo.pdf \
+          -resize 200 Isabelle/lib/logo/isabelle.gif && \
+  for o in `find Isabelle_DOF/examples -name "output"`; do mv $o/document.pdf $o/..; done && \
+  find Isabelle_DOF/examples -name output -exec rm -rf {} \; &> /dev/null || true 
