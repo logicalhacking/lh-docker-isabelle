@@ -42,9 +42,11 @@ RUN apt-get -y update && apt-get install -y imagemagick evince && \
 
 USER isabelle
 RUN if [[ -z "$isadof_version" ]]; then \
+      echo "Creating image from repository (master branch)" && \
       git clone https://git.logicalhacking.com/Isabelle_DOF/Isabelle_DOF.git && \
       (cd Isabelle_DOF && git checkout master) \
     else \
+      echo "Creating image using official release archive (version $isadof_version)" && \
       curl -s -L https://artifacts.logicalhacking.com/releases/Isabelle_DOF/Isabelle_DOF/Isabelle_DOF-"$isadof_version"_Isabelle2019.tar.xz | tar Jxf - && \
       ln -s Isabelle_DOF-"$isadof_version"_Isabelle2019 Isabelle_DOF; \
     fi && \
