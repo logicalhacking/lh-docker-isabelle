@@ -36,7 +36,7 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /home/isabelle
 
 USER root
-RUN apt-get -y update && apt-get install -y imagemagick && \
+RUN apt-get -y update && apt-get install -y imagemagick evince && \
   apt-get clean && \
   rm -rf /usr/share/doc
 
