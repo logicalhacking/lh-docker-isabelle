@@ -40,5 +40,5 @@ docker build -t logicalhacking/debian4isabelle debian4isabelle
 ( cd isabelle && source hooks/build)
 
 # Generate Isabelle/DOF image
-# ISADOF_VERSION=1.0.0
+ISADOF_VERSION=1.0.0
 ( cd isabelle_dof && source hooks/build)

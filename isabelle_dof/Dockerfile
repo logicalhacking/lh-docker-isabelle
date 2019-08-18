@@ -26,9 +26,9 @@
 
 FROM logicalhacking/isabelle2019
 
-ARG tag
+ARG isadof_version
 
-LABEL isadof.tag="$tag"
+LABEL isadof.version="$isadof_version/Isabelle2019"
 
 SHELL ["/bin/bash", "-c"]
 
@@ -41,8 +41,13 @@ RUN apt-get -y update && apt-get install -y imagemagick && \
   rm -rf /usr/share/doc
 
 USER isabelle
-RUN git clone https://git.logicalhacking.com/Isabelle_DOF/Isabelle_DOF.git && \
-  (cd Isabelle_DOF && git checkout "$tag") && \
+RUN if [[ -z "$isadof_version" ]]; then \
+      git clone https://git.logicalhacking.com/Isabelle_DOF/Isabelle_DOF.git && \
+      (cd Isabelle_DOF && git checkout master) \
+    else \
+      curl -s -L https://artifacts.logicalhacking.com/releases/Isabelle_DOF/Isabelle_DOF/Isabelle_DOF-"$isadof_version"_Isabelle2019.tar.xz | tar Jxf - && \
+      ln -s Isabelle_DOF-"$isadof_version"_Isabelle2019 Isabelle_DOF; \
+    fi && \
   (cd Isabelle_DOF && ./install) && \
   (cd Isabelle_DOF && isabelle build -D .) && \
   echo "ISABELLE_LOGIC=Isabelle_DOF" >> Isabelle/etc/settings && \
