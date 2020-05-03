@@ -27,11 +27,11 @@
 
 set -e 
 
-VERSION=${1:-2019}
+VERSION=${1:-2020}
 SESSIONS=${2:-"HOL"}
 DOCKERUID=${3:-`id -u`}
 
-LATEST="2019"
+LATEST="2020"
 
 # Generate base image
 docker build -t logicalhacking/debian4isabelle debian4isabelle
