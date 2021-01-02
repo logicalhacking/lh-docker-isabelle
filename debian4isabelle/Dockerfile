@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Achim D. Brucker
+# Copyright (c) 2019-2020 Achim D. Brucker, https://brucker.ch
 #
 # All rights reserved.
 #
@@ -24,7 +24,7 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-FROM debian:testing-slim
+FROM registry.hub.docker.com/library/debian:testing-slim
 
 SHELL ["/bin/bash", "-c"]
 
