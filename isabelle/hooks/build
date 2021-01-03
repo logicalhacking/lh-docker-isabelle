@@ -27,6 +27,8 @@
 
 set -e 
 
+CONTAINER=${CONTAINER:-docker}
+
 # Generate Isabelle image
 ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_linux.tar.gz"
 if [ "$LATEST" == "$VERSION" ]; then
