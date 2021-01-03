@@ -30,7 +30,6 @@ ARG isadof_version
 
 LABEL isadof.version="$isadof_version/Isabelle2019"
 
-SHELL ["/bin/bash", "-c"]
 
 # Install Isabelle and corresponding AFP
 WORKDIR /home/isabelle

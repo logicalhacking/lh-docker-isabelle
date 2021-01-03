@@ -29,12 +29,15 @@ set -e
 
 VERSION=${1:-2020}
 SESSIONS=${2:-"HOL"}
-DOCKERUID=${3:-`id -u`}
+CONTAINER=${3:-docker}
+DOCKERUID=${4:-`id -u`}
 
 LATEST="2020"
 
+export VERSION SESSIONS CONTAINER DOCKERUID LATEST
+
 # Generate base image
-docker build -t logicalhacking/debian4isabelle debian4isabelle
+$CONTAINER build -t logicalhacking/debian4isabelle debian4isabelle
 
 # Generate Isabelle image(s)
 ( cd isabelle && source hooks/build)

@@ -26,7 +26,6 @@
 
 FROM registry.hub.docker.com/library/debian:testing-slim
 
-SHELL ["/bin/bash", "-c"]
 
 # packages
 RUN apt-get -y update && \

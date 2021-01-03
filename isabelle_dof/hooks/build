@@ -33,5 +33,5 @@ else
     IMAGE="isabelle_dof-"$ISADOF_VERSION"_isabelle2019" 
 fi
 
-docker build -t logicalhacking/$IMAGE . \
+$CONTAINER build -t logicalhacking/$IMAGE . \
              --build-arg isadof_version="$ISADOF_VERSION" 
