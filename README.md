@@ -27,7 +27,7 @@ Main author: [Achim D. Brucker](http://www.brucker.ch/)
 
 ## License
 
-If not otherwise stated, all hacks are licensed under a 2-clause
+If not otherwise stated, all Dockerfiles are licensed under a 2-clause
 BSD-style license.
 
 SPDX-License-Identifier: BSD-2-Clause
