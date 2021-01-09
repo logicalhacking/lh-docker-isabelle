@@ -27,7 +27,14 @@
 
 set -e 
 
-CONTAINER=${CONTAINER:-docker}
+if [ -f ../../config ]; then 
+   source ../../config
+else
+   CONFIG=`git rev-parse --show-toplevel`/config
+   if [ -f $CONFIG ];
+       source $CONFIG
+   fi
+fi
 
 # Generate Isabelle image
 ISA_URL="https://isabelle.in.tum.de/website-Isabelle"$VERSION"/dist/Isabelle"$VERSION"_linux.tar.gz"
