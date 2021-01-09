@@ -31,7 +31,7 @@ if [ -f ../../config ]; then
    source ../../config
 else
    CONFIG=`git rev-parse --show-toplevel`/config
-   if [ -f $CONFIG ];
+   if [ -f $CONFIG ]; then
        source $CONFIG
    fi
 fi
