@@ -37,7 +37,7 @@ LABEL isabelle.sessions="$sessions"
 
 
 # Create default user (isabelle)
-RUN useradd -u $uid -m isabelle && (echo isabelle:isabelle | chpasswd)
+RUN useradd -o -u $uid -m isabelle && (echo isabelle:isabelle | chpasswd)
 USER isabelle
 
 # Install Isabelle and corresponding AFP
