@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2019 Achim D. Brucker
+# Copyright (c) 2019-2021 Achim D. Brucker
 #
 # All rights reserved.
 #
@@ -59,8 +59,8 @@ for url in $ISA_URL $AFP_URL/$AFP_TAR; do
   fi
 done
 
-$CONTAINER build -t logicalhacking/isabelle$VERSION . \
-             --build-arg uid="$DOCKERUID" \
-             --build-arg sessions="$SESSIONS" \
-             --build-arg isabelle="$ISA_URL" \
-             --build-arg afp="$AFP_URL/$AFP_TAR"
+$CONTAINER build --build-arg uid="$DOCKERUID" \
+                 --build-arg sessions="$SESSIONS" \
+                 --build-arg isabelle="$ISA_URL" \
+                 --build-arg afp="$AFP_URL/$AFP_TAR" \
+                 -t $IMAGE_NAME .
