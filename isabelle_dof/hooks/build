@@ -43,5 +43,5 @@ else
 fi
 
 $CONTAINER build --build-arg isadof_version="$ISADOF_VERSION" \
-                 -t $IMAGE_NAME
+                 -t $IMAGE_NAME .
 
