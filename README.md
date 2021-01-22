@@ -1,7 +1,8 @@
 # [Dockerfiles for Isabelle and Related Projects](https://git.logicalhacking.com/lh-docker/lh-docker-isabelle)
 
 This repository contains Dockerfiles for running [Isabelle](https://isabelle.in.tum.de)
-and projects based on [Isabelle](https://isabelle.in.tum.de).
+and projects based on [Isabelle](https://isabelle.in.tum.de). The Dockerfiles are 
+tested with [podman](https://podman.io/) and [Docker](https://www.docker.com). 
 
 ## List of Dockerfiles
 
