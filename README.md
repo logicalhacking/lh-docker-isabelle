@@ -11,12 +11,14 @@ tested with [podman](https://podman.io/) and [Docker](https://www.docker.com).
   eagerly optimized for size, as it goal is to include all tools that are required for
   running Isabelle and tools based on Isabelle (e.g., HOL-TestGen). The following 
   versions are available on docker hub:
+
     * [logicalhacking/debian4isabelle](https://hub.docker.com/r/logicalhacking/debian4isabelle)
 
 * [isabelle](isabelle/Dockerfile) provides a parametrized Dockerfile to generate docker
   images for various version of Isabelle. The image will also contain a copy of the most
   recent version of the [AFP](https://www.isa-afp.org) available for the specified
   version of Isabelle. The following versions are available on docker hub:
+
     * [logicalhacking/isabelle2020](https://hub.docker.com/r/logicalhacking/isabelle2020)
     * [logicalhacking/isabelle2019](https://hub.docker.com/r/logicalhacking/isabelle2019)
     * [logicalhacking/isabelle2018](https://hub.docker.com/r/logicalhacking/isabelle2018)
@@ -27,7 +29,8 @@ tested with [podman](https://podman.io/) and [Docker](https://www.docker.com).
   [Isabelle/DOF](https://git.logicalhacking.com/isabelle_dof/isabelle_dof) is a document
   authoring framework for Isabelle, provided by the University of Exeter and the University
   of Paris-Saclay. The following versions are available on docker hub:
-      * [logicalhacking/isabelle_dof-1.0.0_isabelle2019](https://hub.docker.com/r/logicalhacking/isabelle_dof-1.0.0_isabelle2019)
+
+    * [logicalhacking/isabelle_dof-1.0.0_isabelle2019](https://hub.docker.com/r/logicalhacking/isabelle_dof-1.0.0_isabelle2019)
 
 ## Authors
 
