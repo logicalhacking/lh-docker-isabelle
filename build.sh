@@ -29,8 +29,6 @@ set -e
 
 source config
 
-LATEST="2020"
-
 export VERSION SESSIONS CONTAINER DOCKERUID LATEST
 
 # Generate base image
