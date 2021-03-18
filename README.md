@@ -19,6 +19,7 @@ tested with [podman](https://podman.io/) and [Docker](https://www.docker.com).
   recent version of the [AFP](https://www.isa-afp.org) available for the specified
   version of Isabelle. The following versions are available on docker hub:
 
+    * [logicalhacking/isabelle2021](https://hub.docker.com/r/logicalhacking/isabelle2021)
     * [logicalhacking/isabelle2020](https://hub.docker.com/r/logicalhacking/isabelle2020)
     * [logicalhacking/isabelle2019](https://hub.docker.com/r/logicalhacking/isabelle2019)
     * [logicalhacking/isabelle2018](https://hub.docker.com/r/logicalhacking/isabelle2018)
