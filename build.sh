@@ -35,6 +35,7 @@ export VERSION SESSIONS CONTAINER DOCKERUID LATEST
 $CONTAINER build -t logicalhacking/debian4isabelle debian4isabelle
 
 # Generate Isabelle image(s)
+export IMAGE_NAME=logicalhacking/isabelle$VERSION
 ( cd isabelle && source hooks/build)
 
 # Generate Isabelle/DOF image
