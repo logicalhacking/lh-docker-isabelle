@@ -27,8 +27,8 @@
 
 set -e 
 
-if [ -f ../../config ]; then 
-   source ../../config
+if [ -f ../../../config ]; then 
+   source ../../../config
 else
    CONFIG=`git rev-parse --show-toplevel`/config
    if [ -f $CONFIG ]; then
@@ -39,7 +39,7 @@ fi
 if [ -z "$ISADOF_VERSION" ] ; then
     IMAGE="isabelle_dof"
 else
-    IMAGE="isabelle_dof-"$ISADOF_VERSION"_isabelle2019" 
+    IMAGE="isabelle_dof-"$ISADOF_VERSION"_isabelle2021" 
 fi
 
 $CONTAINER build --build-arg isadof_version="$ISADOF_VERSION" \
