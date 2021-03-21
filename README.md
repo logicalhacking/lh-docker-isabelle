@@ -31,6 +31,8 @@ tested with [podman](https://podman.io/) and [Docker](https://www.docker.com).
   authoring framework for Isabelle, provided by the University of Exeter and the University
   of Paris-Saclay. The following versions are available on docker hub:
 
+    * [logicalhacking/isabelle_dof-1.1.0_isabelle2021](https://hub.docker.com/r/logicalhacking/isabelle_dof-1.1.0_isabelle2021)
+    * [logicalhacking/isabelle_dof-1.1.0_isabelle2020](https://hub.docker.com/r/logicalhacking/isabelle_dof-1.1.0_isabelle2020)
     * [logicalhacking/isabelle_dof-1.0.0_isabelle2019](https://hub.docker.com/r/logicalhacking/isabelle_dof-1.0.0_isabelle2019)
 
 ## Authors
