@@ -43,11 +43,17 @@ if [ "$LATEST" == "$VERSION" ]; then
   AFP_TAR=`curl -s $AFP_URL  | grep "afp-[0-9]" | sed -e 's|^.*href="\(.*\)">.*$|\1|;s|".*$||' | sort -r | head -1`
 
 else
-    # URL for determining name of archive:
-    AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
-    AFP_TAR=`curl -L -s $AFP_URL  | grep "afp-[0-9].*[a-z]</span" | sed -e 's|^.*>\(afp-.*\)</s.*$|\1|' | sort -r | head -1`
-    # URL for direct download    
-    AFP_URL="https://downloads.sourceforge.net/project/afp/afp-Isabelle$VERSION"
+    if [ "2021" == "$VERSION" ]; then
+        # special case, as AFP for Isabelle 2021 is not tagged on sourceforge.net
+        AFP_TAR="afp-2021-11-26.tar.gz"
+        AFP_URL="https://www.isa-afp.org/release/"
+    else
+        # URL for determining name of archive:
+        AFP_URL="https://sourceforge.net/projects/afp/files/afp-Isabelle$VERSION/"
+        AFP_TAR=`curl -L -s $AFP_URL  | grep "afp-[0-9].*[a-z]</span" | sed -e 's|^.*>\(afp-.*\)</s.*$|\1|' | sort -r | head -1`
+        # URL for direct download    
+        AFP_URL="https://downloads.sourceforge.net/project/afp/afp-Isabelle$VERSION"
+    fi
 fi
 
 for url in $ISA_URL $AFP_URL/$AFP_TAR; do
