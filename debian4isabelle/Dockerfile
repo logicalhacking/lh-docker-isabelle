@@ -1,4 +1,4 @@
-# Copyright (c) 2019-2020 Achim D. Brucker, https://brucker.ch
+# Copyright (c) 2019-2022 Achim D. Brucker, https://brucker.ch
 #
 # All rights reserved.
 #
@@ -24,7 +24,7 @@
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
-FROM registry.hub.docker.com/library/debian:testing-slim
+FROM registry.hub.docker.com/library/debian:unstable-slim
 
 
 # packages
@@ -35,7 +35,9 @@ RUN apt-get -y update && \
       # useful utilities 
       git mercurial \
       # texlive for Isabelle's PDF document generation
-      texlive-latex-extra texlive-fonts-extra texlive-publishers \
+      texlive-full \
+      # Python tools and graphviz for add-ons
+      python3-pip graphviz pipenv python3-sklearn-pandas python3-seaborn jupyter-nbconvert \
       && \
   apt-get clean && \
   rm -rf /usr/share/doc
@@ -43,11 +45,9 @@ RUN apt-get -y update && \
 RUN curl -o /tmp/generic.zip http://www.entcs.org/generic.zip && \
     mkdir -p /usr/local/share/texmf/tex/latex/ && \
     cd /tmp && unzip generic.zip && mv generic /usr/local/share/texmf/tex/latex/entcs && \
-    curl -o /tmp/lncs.zip ftp://ftp.springernature.com/cs-proceeding/llncs/llncs2e.zip && \
-    mkdir -p /usr/local/share/texmf/tex/latex/llncs && \
+    curl -o /tmp/lipics.tgz https://submission.dagstuhl.de/styles/download-tag/lipics/v2021.1.2/authors/tgz && \
+    cd /tmp && tar zxvf lipics.tgz && mv *authors* /usr/local/share/texmf/tex/latex/lipics && \
     mkdir -p /usr/local/share/texmf/bibtex/bst && \
-    mkdir -p /tmp/lncs && \
-    cd /tmp/lncs && unzip /tmp/lncs.zip && mv *.cls /usr/local/share/texmf/tex/latex/llncs && mv *.bst /usr/local/share/texmf/bibtex/bst && \
     mkdir -p /usr/local/share/texmf/tex/latex/sig-alternate && \
     curl -o /usr/local/share/texmf/tex/latex/sig-alternate/sig-alternate.cls https://www.acm.org/binaries/content/assets/publications/article-templates/sig-alternate-05-2015.cls && \ 
     curl -o /usr/local/share/texmf/tex/latex/sig-alternate/acmcopyright.sty https://www.acm.org/binaries/content/assets/publications/article-templates/acmcopyright.sty
