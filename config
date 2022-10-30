@@ -27,8 +27,9 @@
 
 set -e 
 
-VERSION=${1:-2021}
+VERSION=${1:-2022}
 SESSIONS=${2:-"HOL"}
 CONTAINER=${3:-docker}
 DOCKERUID=${4:-`id -u`}
-LATEST="2021"
+LATEST="2022"
+CONTAINER=podman
