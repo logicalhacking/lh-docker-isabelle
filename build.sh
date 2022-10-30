@@ -39,5 +39,5 @@ export IMAGE_NAME=logicalhacking/isabelle$VERSION
 ( cd isabelle && source hooks/build)
 
 # Generate Isabelle/DOF image
-ISADOF_VERSION=1.0.0
-( cd isabelle_dof && source hooks/build)
+#ISADOF_VERSION=1.0.0
+#( cd isabelle_dof && source hooks/build)
