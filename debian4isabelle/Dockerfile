@@ -37,7 +37,7 @@ RUN apt-get -y update && \
       # texlive for Isabelle's PDF document generation
       texlive-full \
       # Python tools and graphviz for add-ons
-      python3-pip graphviz pipenv python3-sklearn-pandas python3-seaborn jupyter-nbconvert \
+      python3-pip graphviz pipenv python3-urllib3 python3-sklearn-pandas python3-seaborn jupyter-nbconvert \
       && \
   apt-get clean && \
   rm -rf /usr/share/doc
