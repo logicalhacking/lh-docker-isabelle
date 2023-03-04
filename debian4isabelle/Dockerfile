@@ -42,7 +42,7 @@ RUN apt-get -y update && \
   apt-get clean && \
   rm -rf /usr/share/doc
 
-RUN curl -o /tmp/generic.zip http://www.entcs.org/generic.zip && \
+RUN curl -o /tmp/generic.zip https://www.entcs.org/generic.zip && \
     mkdir -p /usr/local/share/texmf/tex/latex/ && \
     cd /tmp && unzip generic.zip && mv generic /usr/local/share/texmf/tex/latex/entcs && \
     curl -o /tmp/lipics.tgz https://submission.dagstuhl.de/styles/download-tag/lipics/v2021.1.2/authors/tgz && \

@@ -51,8 +51,9 @@ RUN curl -L -o "Isabelle.tar.gz" "$isabelle" && \
   mv afp* afp && \
   mkdir .isabelle && \
   echo `pwd`/afp/thys > .isabelle/ROOTS && \
-  perl -pi -e 's,ISABELLE_HOME_USER=.*,ISABELLE_HOME_USER="\$USER_HOME/.isabelle",g;' Isabelle/etc/settings && \
-  Isabelle/bin/isabelle build -b $sessions \
-  rm -rf /tmp/*
+  perl -pi -e 's,ISABELLE_HOME_USER=.*,ISABELLE_HOME_USER="/home/isabelle/.isabelle",g;' Isabelle/etc/settings && \
+  Isabelle/bin/isabelle build -j 1 -b $sessions 
 
 ENV PATH="/home/isabelle/Isabelle/bin:${PATH}"
+ENV HOME="/home/isabelle"
+USER root
